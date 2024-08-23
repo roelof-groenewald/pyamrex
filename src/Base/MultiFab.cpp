@@ -827,8 +827,7 @@ void init_MultiFab(py::module &m)
         )
 
         .def_static("lin_comb",
-            // py::overload_cast< MultiFab &, Real, MultiFab const &, int, Real, MultiFab const &, int, int, int, int >(&MultiFab::LinComb)
-            static_cast<void (*)(MultiFab &, Real, MultiFab const &, int, Real, MultiFab const &, int, int, int, int)>(&MultiFab::LinComb),
+            py::overload_cast< MultiFab &, Real, MultiFab const &, int, Real, MultiFab const &, int, int, int, int >(&MultiFab::LinComb),
             py::arg("dst"),
             py::arg("a"), py::arg("x"), py::arg("x_comp"),
             py::arg("b"), py::arg("y"), py::arg("y_comp"),
@@ -836,7 +835,7 @@ void init_MultiFab(py::module &m)
             "dst = a*x + b*y"
         )
         .def_static("lin_comb",
-            static_cast<void (*)(MultiFab &, Real, MultiFab const &, int, Real, MultiFab const &, int, int, int, IntVect const & )>(&MultiFab::LinComb),
+            py::overload_cast< MultiFab &, Real, MultiFab const &, int, Real, MultiFab const &, int, int, int, IntVect const & >(&MultiFab::LinComb),
             py::arg("dst"),
             py::arg("a"), py::arg("x"), py::arg("x_comp"),
             py::arg("b"), py::arg("y"), py::arg("y_comp"),
