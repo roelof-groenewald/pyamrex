@@ -835,6 +835,14 @@ void init_MultiFab(py::module &m)
             py::arg("dstcomp"), py::arg("numcomp"), py::arg("nghost"),
             "dst = a*x + b*y"
         )
+        .def_static("lin_comb",
+            static_cast<void (*)(MultiFab &, Real, MultiFab const &, int, Real, MultiFab const &, int, int, int, IntVect const & )>(&MultiFab::LinComb),
+            py::arg("dst"),
+            py::arg("a"), py::arg("x"), py::arg("x_comp"),
+            py::arg("b"), py::arg("y"), py::arg("y_comp"),
+            py::arg("dstcomp"), py::arg("numcomp"), py::arg("nghost"),
+            "dst = a*x + b*y"
+        )
 
         .def_static("add_product",
             py::overload_cast< MultiFab &, MultiFab const &, int, MultiFab const &, int, int, int, int >(&MultiFab::AddProduct),
